@@ -1,8 +1,8 @@
 package com.apiaula.tutorial.apiaula.controllers;
 
-import com.apiaula.tutorial.apiaula.domain.Client;
 import com.apiaula.tutorial.apiaula.domain.Repository.ClientRepository;
 import com.apiaula.tutorial.apiaula.domain.models.Client;
+import com.apiaula.tutorial.apiaula.domain.services.ClientService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,6 +18,9 @@ public class ClientController {
 
      @Autowired
      private ClientRepository clientRepository;
+
+     @Autowired
+     private ClientService clientService;
    @GetMapping
    public List<Client> list(){
       return clientRepository.findByNameContaining("J");
@@ -30,7 +33,7 @@ public class ClientController {
    @PostMapping
    @ResponseStatus(HttpStatus.CREATED)
    public Client addClient(@Valid @RequestBody Client client){
-      return clientRepository.save(client);
+      return clientService.save(client);
    }
    @PutMapping("/{clientID}")
    public ResponseEntity<Client> changeClient(@PathVariable Long clientID,@Valid @RequestBody Client client) {
@@ -38,7 +41,7 @@ public class ClientController {
          return ResponseEntity.notFound().build();
       }
       client.setId(clientID);
-      return ResponseEntity.ok(clientRepository.save(client));
+      return ResponseEntity.ok(clientService.save(client));
    }
 
    @DeleteMapping("/{clientID}")

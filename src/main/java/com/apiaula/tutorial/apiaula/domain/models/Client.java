@@ -1,5 +1,6 @@
 package com.apiaula.tutorial.apiaula.domain.models;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
