@@ -32,6 +32,10 @@ public class GenericErrorResponse {
       this.errors = errors;
    }
 
+   public GenericErrorResponse(String description) {
+      this.description = description;
+   }
+
    public GenericErrorResponse(int errorCode, String description, LocalDateTime hour) {
       this.errorCode = errorCode;
       this.description = description;

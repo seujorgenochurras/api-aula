@@ -1,6 +1,5 @@
 package com.apiaula.tutorial.apiaula.ApiExceptionHandler;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
@@ -26,7 +25,6 @@ public class ExceptionHandler extends ResponseEntityExceptionHandler {
    @Override
    protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) {
       GenericErrorResponse genericErrorResponse = new GenericErrorResponse(status.value(), "Invallid arguments", LocalDateTime.now());
-
       ex.getAllErrors().stream().filter(objectError -> objectError instanceof FieldError)
          .map(objectError -> (FieldError) objectError)
            .forEach(fieldError -> genericErrorResponse.addError(new
@@ -36,8 +34,8 @@ public class ExceptionHandler extends ResponseEntityExceptionHandler {
       return handleExceptionInternal(ex, genericErrorResponse,headers, status, request);
    }
 
-   @org.springframework.web.bind.annotation.ExceptionHandler(EmailAlreadyRegisteredException.class)
-   public ResponseEntity<Object> handleEmailAlreadyRegistered(EmailAlreadyRegisteredException ex, WebRequest request){
+   @org.springframework.web.bind.annotation.ExceptionHandler(GenericClientException.class)
+   public ResponseEntity<Object> handleEmailAlreadyRegistered(GenericClientException ex, WebRequest request){
       HttpStatus httpStatus = HttpStatus.BAD_REQUEST;
       GenericErrorResponse genericErrorResponse = new GenericErrorResponse(httpStatus.value(),
               ex.getMessage(), LocalDateTime.now());

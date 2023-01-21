@@ -23,7 +23,7 @@ public class ClientController {
      private ClientService clientService;
    @GetMapping
    public List<Client> list(){
-      return clientRepository.findByNameContaining("J");
+      return clientRepository.findAll();
    }
    @GetMapping(value = "/{id}")
    public ResponseEntity<Client> search(@PathVariable(value = "id") Long id){
