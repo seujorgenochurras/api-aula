@@ -1,10 +1,14 @@
 package com.apiaula.tutorial.apiaula.domain.models;
 
+import com.apiaula.tutorial.apiaula.domain.Validations.ValidationGroup;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.groups.ConvertGroup;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 
 @Entity
 public class Delivery {
@@ -13,19 +17,23 @@ public class Delivery {
    @Id
    private long id;
    @ManyToOne
+   @Valid
+   @ConvertGroup(to = ValidationGroup.ClientID.class)
+   @NotNull
    @JoinColumn(name = "client_id")
    private Client client;
    @Embedded
+   @Valid
+   @NotNull
    private Recipient recipient;
 
    @Column(name = "delivery_date")
    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
-   private LocalDateTime deliveryDate;
+   private OffsetDateTime deliveryDate;
    @Column(name = "delivery_arrived")
    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
-   private LocalDateTime deliveryArrive;
-
-
+   private OffsetDateTime deliveryArrive;
+   @NotNull
    private BigDecimal price;
    @Enumerated(EnumType.STRING)
    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
@@ -68,19 +76,19 @@ public class Delivery {
       this.recipient = recipient;
    }
 
-   public LocalDateTime getDeliveryDate() {
+   public OffsetDateTime getDeliveryDate() {
       return deliveryDate;
    }
 
-   public void setDeliveryDate(LocalDateTime deliveryDate) {
+   public void setDeliveryDate(OffsetDateTime deliveryDate) {
       this.deliveryDate = deliveryDate;
    }
 
-   public LocalDateTime getDeliveryArrive() {
+   public OffsetDateTime getDeliveryArrive() {
       return deliveryArrive;
    }
 
-   public void setDeliveryArrive(LocalDateTime deliveryArrive) {
+   public void setDeliveryArrive(OffsetDateTime deliveryArrive) {
       this.deliveryArrive = deliveryArrive;
    }
 

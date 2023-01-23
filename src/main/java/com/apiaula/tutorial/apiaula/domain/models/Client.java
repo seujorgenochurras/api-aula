@@ -1,5 +1,6 @@
 package com.apiaula.tutorial.apiaula.domain.models;
 
+import com.apiaula.tutorial.apiaula.domain.Validations.ValidationGroup;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
@@ -11,6 +12,7 @@ import java.util.Objects;
 @Table(name = "clients")
 public class Client {
    @Id
+   @NotNull(groups = ValidationGroup.ClientID.class)
    @GeneratedValue(strategy = GenerationType.IDENTITY)
    private long id;
 @NotNull

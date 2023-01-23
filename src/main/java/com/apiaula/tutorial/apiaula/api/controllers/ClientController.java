@@ -1,4 +1,4 @@
-package com.apiaula.tutorial.apiaula.controllers;
+package com.apiaula.tutorial.apiaula.api.controllers;
 
 import com.apiaula.tutorial.apiaula.domain.Repository.ClientRepository;
 import com.apiaula.tutorial.apiaula.domain.models.Client;
@@ -36,7 +36,7 @@ public class ClientController {
       return clientService.save(client);
    }
    @PutMapping("/{clientID}")
-   public ResponseEntity<Client> changeClient(@PathVariable Long clientID,@Valid @RequestBody Client client) {
+   public ResponseEntity<Client> changeClient(@PathVariable Long clientID, @Valid @RequestBody Client client) {
       if (!clientRepository.existsById(clientID)) {
          return ResponseEntity.notFound().build();
       }
