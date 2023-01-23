@@ -1,6 +1,6 @@
 package com.apiaula.tutorial.apiaula.domain.services;
 
-import com.apiaula.tutorial.apiaula.ApiExceptionHandler.GenericClientException;
+import com.apiaula.tutorial.apiaula.api.ApiExceptionHandler.GenericClientException;
 import com.apiaula.tutorial.apiaula.domain.Repository.ClientRepository;
 import com.apiaula.tutorial.apiaula.domain.models.Client;
 import jakarta.transaction.Transactional;

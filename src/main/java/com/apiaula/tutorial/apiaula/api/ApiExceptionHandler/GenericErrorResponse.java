@@ -1,4 +1,4 @@
-package com.apiaula.tutorial.apiaula.ApiExceptionHandler;
+package com.apiaula.tutorial.apiaula.api.ApiExceptionHandler;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 

@@ -1,4 +1,4 @@
-package com.apiaula.tutorial.apiaula.ApiExceptionHandler;
+package com.apiaula.tutorial.apiaula.api.ApiExceptionHandler;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
