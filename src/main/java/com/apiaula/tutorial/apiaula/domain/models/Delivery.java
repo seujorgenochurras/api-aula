@@ -29,10 +29,10 @@ public class Delivery {
 
    @Column(name = "delivery_date")
    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
-   private OffsetDateTime deliveryDate;
+   private OffsetDateTime deliveryStarted;
    @Column(name = "delivery_arrived")
    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
-   private OffsetDateTime deliveryArrive;
+   private OffsetDateTime deliveryArrived;
    @NotNull
    private BigDecimal price;
    @Enumerated(EnumType.STRING)
@@ -76,20 +76,20 @@ public class Delivery {
       this.recipient = recipient;
    }
 
-   public OffsetDateTime getDeliveryDate() {
-      return deliveryDate;
+   public OffsetDateTime getDeliveryStarted() {
+      return deliveryStarted;
    }
 
-   public void setDeliveryDate(OffsetDateTime deliveryDate) {
-      this.deliveryDate = deliveryDate;
+   public void setDeliveryStarted(OffsetDateTime deliveryStarted) {
+      this.deliveryStarted = deliveryStarted;
    }
 
-   public OffsetDateTime getDeliveryArrive() {
-      return deliveryArrive;
+   public OffsetDateTime getDeliveryArrived() {
+      return deliveryArrived;
    }
 
-   public void setDeliveryArrive(OffsetDateTime deliveryArrive) {
-      this.deliveryArrive = deliveryArrive;
+   public void setDeliveryArrived(OffsetDateTime deliveryArrived) {
+      this.deliveryArrived = deliveryArrived;
    }
 
    public BigDecimal getPrice() {
