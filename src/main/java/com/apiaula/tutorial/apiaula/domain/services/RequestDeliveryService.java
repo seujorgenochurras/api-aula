@@ -1,6 +1,5 @@
 package com.apiaula.tutorial.apiaula.domain.services;
 
-import com.apiaula.tutorial.apiaula.api.model.DeliveryModel;
 import com.apiaula.tutorial.apiaula.domain.Repository.DeliveryRespository;
 import com.apiaula.tutorial.apiaula.domain.models.Client;
 import com.apiaula.tutorial.apiaula.domain.models.Delivery;
@@ -25,7 +24,7 @@ public class RequestDeliveryService {
    public Delivery request(Delivery delivery){
       Client client = clientService.searchClientByID(delivery.getClient().getId());
       delivery.setStatus(DeliveryStatus.PENDING);
-      delivery.setDeliveryDate(OffsetDateTime.now());
+      delivery.setDeliveryStarted(OffsetDateTime.now());
       delivery.setClient(client);
 
       return deliveryRespository.save(delivery);

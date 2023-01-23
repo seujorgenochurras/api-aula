@@ -1,8 +1,13 @@
-package com.apiaula.tutorial.apiaula.api.model;
+package com.apiaula.tutorial.apiaula.api.model.request;
 
-public class RecipientModel {
+import jakarta.validation.constraints.NotNull;
+
+public class RecipientRequest {
+   @NotNull
    private String name;
+   @NotNull
    private String address;
+   @NotNull
    private String phone;
 
 
@@ -29,5 +34,4 @@ public class RecipientModel {
    public void setPhone(String phone) {
       this.phone = phone;
    }
-
 }

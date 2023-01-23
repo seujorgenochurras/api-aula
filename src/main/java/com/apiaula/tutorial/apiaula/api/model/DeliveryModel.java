@@ -9,8 +9,8 @@ import java.time.OffsetDateTime;
 public class DeliveryModel {
 
    private Long id;
-   private String clientName;
-   private RecipientModel recipient = new RecipientModel();
+   private ClientPreviewModel client;
+   private RecipientModel recipient;
    private BigDecimal price;
    private DeliveryStatus deliveryStatus;
    private OffsetDateTime deliveryStarted;
@@ -23,14 +23,6 @@ public class DeliveryModel {
 
    public void setId(Long id) {
       this.id = id;
-   }
-
-   public String getClientName() {
-      return clientName;
-   }
-
-   public void setClientName(String clientName) {
-      this.clientName = clientName;
    }
 
    public RecipientModel getRecipient() {
@@ -71,5 +63,12 @@ public class DeliveryModel {
 
    public void setDeliveryArrived(OffsetDateTime deliveryArrived) {
       this.deliveryArrived = deliveryArrived;
+   }
+   public ClientPreviewModel getClient() {
+      return client;
+   }
+
+   public void setClient(ClientPreviewModel client) {
+      this.client = client;
    }
 }
