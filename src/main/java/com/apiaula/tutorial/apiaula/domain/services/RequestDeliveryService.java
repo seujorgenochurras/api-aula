@@ -11,7 +11,7 @@ import java.time.OffsetDateTime;
 
 @Service
 public class RequestDeliveryService {
-   private DeliveryRespository deliveryRespository;
+   private final DeliveryRespository deliveryRespository;
    private final ClientService clientService;
 
    public RequestDeliveryService(DeliveryRespository deliveryRespository,

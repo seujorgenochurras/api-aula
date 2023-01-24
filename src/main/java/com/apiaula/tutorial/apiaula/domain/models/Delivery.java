@@ -9,6 +9,8 @@ import jakarta.validation.groups.ConvertGroup;
 
 import java.math.BigDecimal;
 import java.time.OffsetDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Delivery {
@@ -26,6 +28,9 @@ public class Delivery {
    @Valid
    @NotNull
    private Recipient recipient;
+
+   @OneToMany(mappedBy = "delivery",cascade = CascadeType.ALL)
+   private final List<Occurrence> occurrencesList = new ArrayList<>();
 
    @Column(name = "delivery_date")
    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
@@ -106,6 +111,19 @@ public class Delivery {
 
    public void setStatus(DeliveryStatus status) {
       this.status = status;
+   }
+
+   public List<Occurrence> getOccurrencesList() {
+      return occurrencesList;
+   }
+
+   public Occurrence addOccurrence(String description){
+     Occurrence occurrence = new Occurrence();
+     occurrence.setDelivery(this);
+     occurrence.setDescription(description);
+     occurrence.setDateRegister(OffsetDateTime.now());
+      this.getOccurrencesList().add(occurrence);
+      return occurrence;
    }
 
 }

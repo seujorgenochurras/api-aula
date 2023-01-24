@@ -16,7 +16,6 @@ public class DeliveryAssembler {
    @Autowired
    private ModelMapper modelMapper;
 
-
    public DeliveryModel toModel(Delivery delivery){
       return modelMapper.map(delivery, DeliveryModel.class);
    }
@@ -27,7 +26,6 @@ public class DeliveryAssembler {
    }
    public Delivery toEntity(DeliveryRequestModel model){
       return modelMapper.map(model, Delivery.class);
-
    }
 
 }
