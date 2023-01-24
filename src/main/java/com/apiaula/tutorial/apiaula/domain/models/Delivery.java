@@ -1,5 +1,6 @@
 package com.apiaula.tutorial.apiaula.domain.models;
 
+import com.apiaula.tutorial.apiaula.api.ApiExceptionHandler.GenericException;
 import com.apiaula.tutorial.apiaula.domain.Validations.ValidationGroup;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
@@ -115,6 +116,17 @@ public class Delivery {
 
    public List<Occurrence> getOccurrencesList() {
       return occurrencesList;
+   }
+
+   public void setArrived(){
+      if(!canBeArrived()){
+         throw new GenericException("Cannot update status, delivery is in a bad status");
+      }
+      this.setStatus(DeliveryStatus.ARRIVED);
+      setDeliveryArrived(OffsetDateTime.now());
+   }
+   public boolean canBeArrived(){
+      return DeliveryStatus.PENDING.equals(getStatus());
    }
 
    public Occurrence addOccurrence(String description){

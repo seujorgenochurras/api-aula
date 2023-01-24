@@ -34,16 +34,16 @@ public class ExceptionHandler extends ResponseEntityExceptionHandler {
       return handleExceptionInternal(ex, genericErrorResponse,headers, status, request);
    }
 
-   @org.springframework.web.bind.annotation.ExceptionHandler(GenericNotFoundException.class)
-   public ResponseEntity<Object> handleEmailAlreadyRegistered(GenericNotFoundException ex, WebRequest request){
+   @org.springframework.web.bind.annotation.ExceptionHandler(GenericException.class)
+   public ResponseEntity<Object> handleEmailAlreadyRegistered(GenericException ex, WebRequest request){
       HttpStatus httpStatus = HttpStatus.BAD_REQUEST;
       GenericErrorResponse genericErrorResponse = new GenericErrorResponse(httpStatus.value(),
               ex.getMessage(), LocalDateTime.now());
       return handleExceptionInternal(ex, genericErrorResponse, new HttpHeaders(), httpStatus, request);
    }
 
-   @org.springframework.web.bind.annotation.ExceptionHandler(EntityNotFoundException.class)
-   public ResponseEntity<Object> handleEntityNotFound(EntityNotFoundException ex, WebRequest request){
+   @org.springframework.web.bind.annotation.ExceptionHandler(EntityException.class)
+   public ResponseEntity<Object> handleEntityNotFound(EntityException ex, WebRequest request){
       HttpStatus httpStatus = HttpStatus.NOT_FOUND;
       GenericErrorResponse genericErrorResponse = new GenericErrorResponse(httpStatus.value(),
               ex.getMessage(), LocalDateTime.now());

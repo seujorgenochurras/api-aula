@@ -4,9 +4,10 @@ package com.apiaula.tutorial.apiaula.api.controllers;
 import com.apiaula.tutorial.apiaula.api.assembler.DeliveryAssembler;
 import com.apiaula.tutorial.apiaula.api.model.DeliveryModel;
 import com.apiaula.tutorial.apiaula.api.model.request.DeliveryRequestModel;
-import com.apiaula.tutorial.apiaula.domain.Repository.DeliveryRespository;
+import com.apiaula.tutorial.apiaula.domain.Repository.DeliveryRepository;
 import com.apiaula.tutorial.apiaula.domain.models.Delivery;
-import com.apiaula.tutorial.apiaula.domain.services.RequestDeliveryService;
+import com.apiaula.tutorial.apiaula.domain.service.ArrivedDeliveryService;
+import com.apiaula.tutorial.apiaula.domain.service.RequestDeliveryService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,17 +19,21 @@ import java.util.List;
 @RequestMapping("/deliveries")
 public class DeliveryController {
 
-   private RequestDeliveryService deliveryService;
+   private final RequestDeliveryService deliveryService;
 
-   private DeliveryRespository deliveryRespository;
+   private final DeliveryRepository deliveryRepository;
 
-   private DeliveryAssembler deliveryAssembler;
+   private final DeliveryAssembler deliveryAssembler;
+
+   private final ArrivedDeliveryService arrivedDeliveryService;
 
    //todo remove this latter, just add @AutoWired to this.deliveryService
-   public DeliveryController(RequestDeliveryService deliveryService, DeliveryRespository respository, DeliveryAssembler deliveryAssembler){
+   public DeliveryController(RequestDeliveryService deliveryService, DeliveryRepository respository, DeliveryAssembler deliveryAssembler
+   , ArrivedDeliveryService arrivedDeliveryService){
       this.deliveryService = deliveryService;
-      this.deliveryRespository = respository;
+      this.deliveryRepository = respository;
       this.deliveryAssembler = deliveryAssembler;
+      this.arrivedDeliveryService = arrivedDeliveryService;
    }
 
    @PostMapping
@@ -40,12 +45,17 @@ public class DeliveryController {
    }
    @GetMapping
    public List<DeliveryModel> getDeliveries() {
-      return deliveryAssembler.toCollectionModel(deliveryRespository.findAll());
+      return deliveryAssembler.toCollectionModel(deliveryRepository.findAll());
    }
 
    @GetMapping("/{deliveryID}")
    public ResponseEntity<DeliveryModel> findByID(@PathVariable long deliveryID){
-       return deliveryRespository.findById(deliveryID).map(model ->ResponseEntity.ok(deliveryAssembler.toModel(model))
+       return deliveryRepository.findById(deliveryID).map(model ->ResponseEntity.ok(deliveryAssembler.toModel(model))
       ).orElse(ResponseEntity.notFound().build());
+   }
+   @PutMapping("/{deliveryId}/arrive")
+   @ResponseStatus(HttpStatus.NO_CONTENT)
+   public void arrive(@PathVariable long deliveryId){
+      arrivedDeliveryService.setArrived(deliveryId);
    }
 }
