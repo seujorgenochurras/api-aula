@@ -1,6 +1,6 @@
-package com.apiaula.tutorial.apiaula.domain.services;
+package com.apiaula.tutorial.apiaula.domain.service;
 
-import com.apiaula.tutorial.apiaula.domain.Repository.DeliveryRespository;
+import com.apiaula.tutorial.apiaula.domain.Repository.DeliveryRepository;
 import com.apiaula.tutorial.apiaula.domain.models.Client;
 import com.apiaula.tutorial.apiaula.domain.models.Delivery;
 import com.apiaula.tutorial.apiaula.domain.models.DeliveryStatus;
@@ -11,12 +11,12 @@ import java.time.OffsetDateTime;
 
 @Service
 public class RequestDeliveryService {
-   private final DeliveryRespository deliveryRespository;
+   private final DeliveryRepository deliveryRepository;
    private final ClientService clientService;
 
-   public RequestDeliveryService(DeliveryRespository deliveryRespository,
+   public RequestDeliveryService(DeliveryRepository deliveryRepository,
                                  ClientService clientService) {
-      this.deliveryRespository = deliveryRespository;
+      this.deliveryRepository = deliveryRepository;
       this.clientService = clientService;
    }
 
@@ -27,7 +27,7 @@ public class RequestDeliveryService {
       delivery.setDeliveryStarted(OffsetDateTime.now());
       delivery.setClient(client);
 
-      return deliveryRespository.save(delivery);
+      return deliveryRepository.save(delivery);
    }
 
 }

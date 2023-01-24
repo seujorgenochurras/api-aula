@@ -2,7 +2,7 @@ package com.apiaula.tutorial.apiaula.api.controllers;
 
 import com.apiaula.tutorial.apiaula.domain.Repository.ClientRepository;
 import com.apiaula.tutorial.apiaula.domain.models.Client;
-import com.apiaula.tutorial.apiaula.domain.services.ClientService;
+import com.apiaula.tutorial.apiaula.domain.service.ClientService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
