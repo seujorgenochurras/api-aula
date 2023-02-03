@@ -22,7 +22,6 @@ public class Occurrence {
    public boolean equals(Object o) {
       if (this == o) return true;
       if (!(o instanceof Occurrence that)) return false;
-
       return getId().equals(that.getId());
    }
 

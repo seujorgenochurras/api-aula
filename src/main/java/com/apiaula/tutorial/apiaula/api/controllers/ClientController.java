@@ -27,8 +27,7 @@ public class ClientController {
    }
    @GetMapping(value = "/{id}")
    public ResponseEntity<Client> search(@PathVariable(value = "id") Long id){
-      Optional<Client> client = clientRepository.findById(id);
-      return client.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+      return ResponseEntity.ok(clientService.searchClientByID(id));
    }
    @PostMapping
    @ResponseStatus(HttpStatus.CREATED)

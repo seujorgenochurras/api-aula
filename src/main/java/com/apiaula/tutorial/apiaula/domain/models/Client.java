@@ -19,11 +19,10 @@ public class Client {
 @Size(max= 60)
    @Column(name = "nome")
    private String name;
-@NotNull
 @Email
 @Size(max= 255)
+@Column(name = "email")
    private String email;
-   @NotNull
    @Size(max= 33)
    @Column(name = "fone")
    private String telefone;

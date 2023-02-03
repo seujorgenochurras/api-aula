@@ -1,6 +1,6 @@
 
 CREATE TABLE delivery(
-id bigint not null,
+id bigint not null auto_increment,
 client_id bigint not null,
 price decimal(10,2),
 deliveryDate date not null,

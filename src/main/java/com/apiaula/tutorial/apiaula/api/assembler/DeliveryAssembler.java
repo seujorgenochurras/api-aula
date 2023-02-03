@@ -3,7 +3,6 @@ package com.apiaula.tutorial.apiaula.api.assembler;
 import com.apiaula.tutorial.apiaula.api.model.DeliveryModel;
 import com.apiaula.tutorial.apiaula.api.model.request.DeliveryRequestModel;
 import com.apiaula.tutorial.apiaula.domain.models.Delivery;
-import org.hibernate.annotations.Comment;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

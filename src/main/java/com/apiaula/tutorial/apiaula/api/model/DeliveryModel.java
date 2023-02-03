@@ -1,6 +1,5 @@
 package com.apiaula.tutorial.apiaula.api.model;
 
-import com.apiaula.tutorial.apiaula.domain.models.Delivery;
 import com.apiaula.tutorial.apiaula.domain.models.DeliveryStatus;
 
 import java.math.BigDecimal;

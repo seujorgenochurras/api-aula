@@ -12,7 +12,6 @@ public class ClientService {
 @Autowired
 private ClientRepository clientRepository;
 
-
    public Client searchClientByID(long clientID){
    return clientRepository.findById(clientID).orElseThrow(()-> new GenericException("Client not found"));
    }
